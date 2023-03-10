@@ -36,6 +36,7 @@ jobs:
       id-token: write
       pull-requests: write
     needs: dispatch
+    if: ${{ needs.dispatch.outputs.queue != '[]' && needs.dispatch.outputs.queue != '' }}
     strategy:
       fail-fast: true
       max-parallel: 1
