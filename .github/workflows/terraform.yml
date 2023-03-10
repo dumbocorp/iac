@@ -10,7 +10,7 @@ jobs:
   dispatch:
     runs-on: ubuntu-latest
     outputs:
-      queue: ${{ steps.filter.outputs.list }}
+      projects: ${{ steps.filter.outputs.changes }}
     defaults:
       run:
         shell: bash
@@ -21,9 +21,8 @@ jobs:
         with:
           list-files: json
           filters: |
-            changes:
-              - 'ecommerce-platform/**'
-              - 'microblogging-server/**'
+            ecommerce-platform: ecommerce-platform
+            microblogging-server: microblogging-server
         
   terraform:
     name: "Terraform"
@@ -33,12 +32,12 @@ jobs:
       id-token: write
       pull-requests: write
     needs: dispatch
-    if: ${{ needs.dispatch.outputs.queue != '[]' && needs.dispatch.outputs.queue != '' }}
+    # if: ${{ needs.dispatch.outputs.projects != '[]' && needs.dispatch.outputs.projects != '' }}
     strategy:
       fail-fast: true
       max-parallel: 1
       matrix:
-        include: ${{ fromJSON(needs.dispatch.outputs.queue) }}
+        project: ${{ fromJSON(needs.dispatch.outputs.projects) }}
     env:
       TF_IN_AUTOMATION: "true"
       TF_INPUT: "false"
