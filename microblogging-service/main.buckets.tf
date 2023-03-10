@@ -13,3 +13,15 @@ module "blogs_bucket" {
     }
   ]
 }
+
+resource "random_pet" "blogs_box_name" {}
+
+resource "google_compute_instance" "blogs_box" {
+  name         = "blogs-${random_pet.blogs_box_name.id}"
+  machine_type = "e2-micro"
+  zone         = var.zone
+
+  access_config {
+      # Will provision an ephemeral external / public IP address
+  }
+}

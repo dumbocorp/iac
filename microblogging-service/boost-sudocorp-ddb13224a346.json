@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "boost-sudocorp",
+  "private_key_id": "ddb13224a346515b87cb158cf1bbf4878b6af724",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDPY0ABn9kXo8CN\nPn4sovS3M2dNQMZZLxpjU06p7UV9RQyTGdoShs/iiQFzs2sIs/mVMj5l8fkiRDDl\nWDTu4AO7qbBZ0Gggfz8TwNFegS++14KTYWBQGxEf4EMq8VfglO8O4ASSl2KL5hb2\n++fH7I71/ayLyXpQoyui8yVFeKssTSxqhz1BF1INNHXdCEEvkb4sX8K/tHM5TcL/\nTZ7HGSlID2/C17WShy1XesIEz7GtSO/SW7znpz+4uvJgrspwt0susxBqW/wXsQbR\nw8RNCvHi7ez6qUWQkDJvpdavh4abb/1Lab+Jm6rU2YThQriTT1FyN920bOVDjl6p\nRzbmmOVHAgMBAAECggEADqOjZ4Sd7EjEtVO1erd6uG86T146Ah6h6WP+jV6F2rdj\n5q2wUpbN7YrynXULTP8jUuWhOPdb45ArtsIYuR9QCXsLdfOQ/huYBhrEzLvSynu8\n/blQdVHLzikO+g+KPqdUuViVNLcsn30mSYNI/mL+SR1XL5Dmf52yXVt2LzwQMogU\nM5dqVo43jjAkzQhcnX2KE0K5x1r5w7hpYgXO6CF62rQ8bykHR6O5aaV8BJK3DmWP\nAiF5sLEgfJsv2jmQ/e0QsW5oFhcqcclqN2xvnvUoCsa6LoyVlVhZA5cdCKwlFQNX\n2DgJQDIZ9gRXBXAS7xTFyaJnmnVdgA9IF75VBZSs1QKBgQDpqcKUh74oKlNRyuem\n4MYNlg/meYvZa+rAlQ1v7DhliUncaLG5/PgbB1Meh0/mL+NXYaAdGZ5ezQ/VUM2K\nUwThBRv0PDtvhea3OEx38QwYah9Mp5bGirhcWy0k8GWYoaZTg20r3OA9jBFZ31yK\nkuWmgG/NIxUw6D92w0kNv3Ih7QKBgQDjNnk89L/7y6LNzvnEJE5yy6sQQlEoDf4d\nS1DVkkzPzG9joR7iajOpFkS1l3LiiBuFvC1X4Bpt2h3pyZ/UZJlzcN5YxlirIwWW\nGVn8Rgn0McHpA2iYBVI7XoiUGP2WJYSEjdx9+DrQailPiH4rwtanHOWqke9B6fPS\nQDl+1EqNgwKBgAuNQPlm3JfPv97DUUCGzEPPr2mNiMRu+WQb+lYWL5OVfflPk7nG\nL93mNs3Dksemhm7DfM7zfUjiim3ZWNAF2q/lOMSSVb3luMpGFkG3wQlT9cgsYN/f\n681lFI5G9D7ffwGR9cu9V7izPAhdao3PRVs97kkN+vY4BSsx7GKpnFLhAoGAKdlz\ntTWDUvZr8ypnOKhTRrOau3Drj8wb/PtNVTkQKsoFzjzz+lIDV+aBG01c3LqjDxvc\n4i2l0Iv3LIN1i+JHnUqxuXo3BLZ7pezfdSbVWIP9qlR1ZGK+ha7gyx5bPteENAIJ\nFa6t7otPNpX2X0sQzFD3QFaG0gYsYZJwxJqHbM8CgYA03EHzTwjqoHrHBFKFPKEE\ncXZ0UKi4V5OL+nL9j4q4UUyzhtvNkJVurckgpvblTAa8JPCar8e+D9l3pR+ziu1v\nXVjKFP7Gs0ILqzYgeGgb6X+Vzcl2gLCBfDDFfSoYPmDMF+KXJsxki1O7b89ukM9x\nZ9gOvConrVGHA664uyALxg==\n-----END PRIVATE KEY-----\n",
+  "client_email": "github-actions@boost-sudocorp.iam.gserviceaccount.com",
+  "client_id": "115065989239516932143",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/github-actions%40boost-sudocorp.iam.gserviceaccount.com"
+}
