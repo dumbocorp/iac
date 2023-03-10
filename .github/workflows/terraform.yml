@@ -44,6 +44,8 @@ jobs:
     needs: dispatch
     if: ${{ needs.dispatch.outputs.projects != '[]' && needs.dispatch.outputs.projects != '' }}
     strategy:
+      fail-fast: true
+      max-parallel: 1
       matrix:
         project: ${{ fromJSON(needs.dispatch.outputs.projects) }}
     env:
