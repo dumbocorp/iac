@@ -7,12 +7,44 @@ on:
   pull_request:
 
 jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    outputs:
+      queue: ${{ steps.changes.outputs.list }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v3
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          list-files: json
+          filters: |
+            changes:
+              - 'ecommerce-platform/**'
+              - 'microblogging-server/**'
+      - name: Output execution plan
+        id: changes
+        run: echo "list=$(cat queue.json)" > $GITHUB_OUTPUT
+        
   terraform:
     name: "Terraform"
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      id-token: write
       pull-requests: write
+    needs: dispatch
+    strategy:
+      fail-fast: true
+      max-parallel: 1
+      matrix:
+        include: ${{ fromJSON(needs.dispatch.outputs.queue) }}
+    env:
+      TF_IN_AUTOMATION: "true"
+      TF_INPUT: "false"
+      working-directory: workspaces/${{ matrix.workspace }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
