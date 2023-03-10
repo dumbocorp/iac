@@ -9,7 +9,7 @@ module "data_bucket" {
   iam_members = [
     {
       role   = "roles/storage.objectViewer"
-      member = "user:francois@bootsecurity.io"
+      member = "user:francois@boostsecurity.io"
     }
   ]
 }
