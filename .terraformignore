@@ -1,0 +1,20 @@
+# Git
+**/.git/**
+
+# Terraform cache directories
+**/.terraform/*
+
+# Terraform .tfstate files
+*.tfstate
+*.tfstate.*
+
+# Log files
+*.log
+
+# Terraform configuration files
+.terraformrc
+terraform.rc
+
+# Other
+*.md
+.git
