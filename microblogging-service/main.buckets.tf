@@ -13,4 +13,3 @@ module "blogs_bucket" {
     }
   ]
 }
-
