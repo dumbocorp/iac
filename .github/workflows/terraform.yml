@@ -25,8 +25,8 @@ jobs:
         id: filter
         with:
           filters: |
-            ecommerce-platform: ecommerce-platform
-            microblogging-server: microblogging-server
+            ecommerce-platform: ecommerce-platform/**
+            microblogging-server: microblogging-server/**
         
   terraform:
     name: "Terraform"
@@ -36,7 +36,7 @@ jobs:
       id-token: write
       pull-requests: write
     needs: dispatch
-    # if: ${{ needs.dispatch.outputs.projects != '[]' && needs.dispatch.outputs.projects != '' }}
+    if: ${{ needs.dispatch.outputs.projects != '[]' && needs.dispatch.outputs.projects != '' }}
     strategy:
       fail-fast: true
       max-parallel: 1
