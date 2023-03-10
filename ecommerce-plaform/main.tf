@@ -20,7 +20,7 @@ terraform {
 }
 
 provider "google" {
-  project = "boost-sudocorp"
-  region = "northamerica-northeast1"
-  zone = "northamerica-northeast1-c"
+  project = var.project
+  region = var.region
+  zone = var.zone
 }
