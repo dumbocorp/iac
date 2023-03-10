@@ -46,8 +46,9 @@ jobs:
       TF_IN_AUTOMATION: "true"
       TF_INPUT: "false"
       working-directory: workspaces/${{ matrix.workspace }}
-      PROJECT_ID: boost-malware-poc
       GCLOUD_VERSION: 410.0.0
+      WORKLOAD_IDENTITY_PROVIDER: projects/459968513011/locations/global/workloadIdentityPools/default/providers/github-actions
+      SERVICE_ACCOUNT: github-actions@boost-malware-poc.iam.gserviceaccount.com
     steps:
       - name: Checkout
         uses: actions/checkout@v3
