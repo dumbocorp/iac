@@ -70,7 +70,6 @@ jobs:
       - name: Scan terraform workspace using Checkov
         uses: boostsecurityio/boostsec-scanner-github@v4
         with:
-          api_endpoint: https://api.dev.boostsec.io
           api_token: ${{ secrets.BOOST_API_TOKEN }}
           registry_module: boostsecurityio/checkov-tf-plan
           scan_label: ${{ matrix.project }}
@@ -79,5 +78,3 @@ jobs:
             terraform init
             terraform plan -lock=false -no-color -refresh=false -out=boost.tfplan
             terraform show -json boost.tfplan | jq . > boost.tfplan.json
-        env:
-          BOOST_SCANNER_REGISTRY_REPO: https://github.com/boostsecurityio/scanner-testing
