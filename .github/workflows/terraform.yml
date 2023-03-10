@@ -45,7 +45,6 @@ jobs:
     env:
       TF_IN_AUTOMATION: "true"
       TF_INPUT: "false"
-      working-directory: workspaces/${{ matrix.workspace }}
       GCLOUD_VERSION: 410.0.0
       WORKLOAD_IDENTITY_PROVIDER: projects/459968513011/locations/global/workloadIdentityPools/default/providers/github-actions
       SERVICE_ACCOUNT: github-actions@boost-sudocorp.iam.gserviceaccount.com
@@ -73,24 +72,24 @@ jobs:
       - name: Terraform Format
         id: fmt
         run: terraform fmt -check
-        working-directory: ${{ env.working-directory }}
+        working-directory: ${{ matrix.project }}
 
       - name: Terraform Init
         id: init
         run: terraform init
-        working-directory: ${{ env.working-directory }}
+        working-directory: ${{ matrix.project }}
       
       - name: Terraform Validate
         id: validate
         run: terraform validate -no-color
-        working-directory: ${{ env.working-directory }}
+        working-directory: ${{ matrix.project }}
 
       - name: Terraform Plan
         id: plan
         if: github.event_name == 'pull_request'
         run: terraform plan -no-color -input=false
         continue-on-error: true
-        working-directory: ${{ env.working-directory }}
+        working-directory: ${{ matrix.project }}
 
       - name: Update Pull Request
         uses: actions/github-script@v6
@@ -129,4 +128,4 @@ jobs:
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -auto-approve -input=false
-        working-directory: ${{ env.working-directory }}
+        working-directory: ${{ matrix.project }}
