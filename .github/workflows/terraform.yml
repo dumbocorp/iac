@@ -36,7 +36,9 @@ jobs:
         
   terraform:
     name: "Terraform"
-    runs-on: ubuntu-latest
+    runs-on: 
+      group: large-runners
+      labels: ubuntu-latest-4-cores
     permissions:
       contents: read
       id-token: write
