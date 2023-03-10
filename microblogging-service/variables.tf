@@ -15,3 +15,4 @@ variable "zone" {
   type        = string
   default     = "northamerica-northeast1-b"
 }
+
