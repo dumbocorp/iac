@@ -46,6 +46,8 @@ jobs:
       TF_IN_AUTOMATION: "true"
       TF_INPUT: "false"
       working-directory: workspaces/${{ matrix.workspace }}
+      PROJECT_ID: boost-malware-poc
+      GCLOUD_VERSION: 410.0.0
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -55,24 +57,40 @@ jobs:
         with:
           terraform_version: 1.4.0
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+          
+      - uses: google-github-actions/auth@v1
+        name: Authenticate to Google Cloud
+        with:
+          workload_identity_provider: ${{ env.WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ env.SERVICE_ACCOUNT }}
+
+      - uses: google-github-actions/setup-gcloud@v1.0.1
+        name: Setup gcloud Tool
+        with:
+          version: ${{ env.GCLOUD_VERSION }}
+          project_id: ${{ env.PROJECT_ID }}
 
       - name: Terraform Format
         id: fmt
         run: terraform fmt -check
+        working-directory: ${{ env.working-directory }}
 
       - name: Terraform Init
         id: init
         run: terraform init
+        working-directory: ${{ env.working-directory }}
       
       - name: Terraform Validate
         id: validate
         run: terraform validate -no-color
+        working-directory: ${{ env.working-directory }}
 
       - name: Terraform Plan
         id: plan
         if: github.event_name == 'pull_request'
         run: terraform plan -no-color -input=false
         continue-on-error: true
+        working-directory: ${{ env.working-directory }}
 
       - name: Update Pull Request
         uses: actions/github-script@v6
@@ -111,3 +129,4 @@ jobs:
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -auto-approve -input=false
+        working-directory: ${{ env.working-directory }}
