@@ -68,7 +68,6 @@ jobs:
         name: Setup gcloud Tool
         with:
           version: ${{ env.GCLOUD_VERSION }}
-          project_id: ${{ env.PROJECT_ID }}
 
       - name: Terraform Format
         id: fmt
