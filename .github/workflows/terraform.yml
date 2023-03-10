@@ -10,7 +10,7 @@ jobs:
   dispatch:
     runs-on: ubuntu-latest
     outputs:
-      queue: ${{ steps.changes.outputs.list }}
+      queue: ${{ steps.filter.outputs.list }}
     defaults:
       run:
         shell: bash
