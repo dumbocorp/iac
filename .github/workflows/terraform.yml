@@ -24,9 +24,6 @@ jobs:
             changes:
               - 'ecommerce-platform/**'
               - 'microblogging-server/**'
-      - name: Output execution plan
-        id: changes
-        run: echo "list=$(cat queue.json)" > $GITHUB_OUTPUT
         
   terraform:
     name: "Terraform"
