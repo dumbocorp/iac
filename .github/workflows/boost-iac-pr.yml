@@ -79,15 +79,5 @@ jobs:
             terraform init
             terraform plan -lock=false -no-color -refresh=false -out=boost.tfplan
             terraform show -json boost.tfplan | jq . > boost.tfplan.json
-            mkdir -p ${{ runner.temp }}/tfplans/
-            cp boost.tfplan.json ${{ runner.temp }}/tfplans/boost.tfplan.json
-          log_level: TRACE
-        continue-on-error: true
         env:
           BOOST_SCANNER_REGISTRY_REPO: https://github.com/boostsecurityio/scanner-testing
-
-      - name: Save plan to artifacts for debug
-        uses: actions/upload-artifact@v3
-        with:
-          name: boost.tfplan.json
-          path: ${{ runner.temp }}/tfplans/
