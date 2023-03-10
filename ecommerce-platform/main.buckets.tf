@@ -10,11 +10,11 @@ module "ecommerce_bucket" {
     {
       role   = "roles/storage.objectViewer"
       member = "user:francois@boostsecurity.io"
-    },
-    {
-      role   = "roles/storage.objectViewer"
-      member = "allUsers"
     }
+    # {
+    #   role   = "roles/storage.objectViewer"
+    #   member = "allUsers"
+    # }
   ]
 
 }
