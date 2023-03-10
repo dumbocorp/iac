@@ -9,7 +9,7 @@ module "blogs_bucket" {
   iam_members = [
     {
       role   = "roles/storage.objectViewer"
-      member = "user:francois@boostsecurity.io"
+      member = "allAuthenticatedUsers"
     }
   ]
 }
