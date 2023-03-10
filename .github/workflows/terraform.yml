@@ -4,7 +4,13 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'ecommerce-platform/**'
+      - 'microblogging-service/**'
   pull_request:
+    paths:
+      - 'ecommerce-platform/**'
+      - 'microblogging-service/**'
 
 permissions: {}
 

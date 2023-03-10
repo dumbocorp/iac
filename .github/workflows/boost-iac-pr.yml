@@ -1,0 +1,82 @@
+name: boostsecurity.io - IaC (PR)
+
+on:
+  pull_request:
+    paths:
+      - 'ecommerce-platform/**'
+      - 'microblogging-service/**'
+
+permissions: {}
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      projects: ${{ steps.filter.outputs.changes }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v3
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            ecommerce-platform: ecommerce-platform/**
+            microblogging-service: microblogging-service/**
+
+  boost-iac-tf-post-plan:
+    name: "Runs IaC checks upon the Terraform Plan"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    needs: dispatch
+    if: ${{ needs.dispatch.outputs.projects != '[]' && needs.dispatch.outputs.projects != '' }}
+    strategy:
+      matrix:
+        project: ${{ fromJSON(needs.dispatch.outputs.projects) }}
+    env:
+      TF_IN_AUTOMATION: "true"
+      TF_INPUT: "false"
+      GCLOUD_VERSION: 410.0.0
+      WORKLOAD_IDENTITY_PROVIDER: projects/614092910704/locations/global/workloadIdentityPools/default/providers/github-actions
+      SERVICE_ACCOUNT: github-actions@boost-sudocorp.iam.gserviceaccount.com
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.4.0
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+          
+      - uses: google-github-actions/auth@v1
+        name: Authenticate to Google Cloud
+        with:
+          workload_identity_provider: ${{ env.WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ env.SERVICE_ACCOUNT }}
+
+      - uses: google-github-actions/setup-gcloud@v1.0.1
+        name: Setup gcloud Tool
+        with:
+          version: ${{ env.GCLOUD_VERSION }}
+
+      - name: Scan terraform workspace using Checkov
+        uses: boostsecurityio/boostsec-scanner-github@4
+        with:
+          api_endpoint: https://api.dev.boostsec.io
+          api_token: ${{ secrets.BOOST_API_TOKEN }}
+          registry_module: boostsecurityio/checkov-tf-plan
+          scan_label: ${{ matrix.project }}
+          scan_path: ${{ matrix.project }}
+          pre_scan_cmd: |
+            terraform init
+            terraform plan -lock=false -no-color -refresh=false -out=boost.tfplan
+            terraform show -json boost.tfplan | jq . > boost.tfplan.json
+        env:
+          BOOST_SCANNER_REGISTRY_REPO: https://github.com/boostsecurityio/scanner-testing
