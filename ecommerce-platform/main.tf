@@ -14,7 +14,7 @@ terraform {
   cloud {
     organization = "sudocorp"
     workspaces {
-      name = "sudocorp"
+      name = "ecommerce-platform"
     }
   }
 }
