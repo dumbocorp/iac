@@ -1,4 +1,4 @@
-name: boostsecurity.io
+name: boostsecurity.io - Native Scanner
 on:
   workflow_dispatch:
   push:
@@ -10,6 +10,8 @@ on:
     types:
       - opened
       - synchronize
+permissions:
+  contents: read
 jobs:
   boost-sast:
     name: SAST
