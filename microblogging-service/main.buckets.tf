@@ -22,6 +22,6 @@ resource "google_compute_instance" "blogs_box" {
   zone         = var.zone
 
   access_config {
-      # Will provision an ephemeral external / public IP address
+    # Will provision an ephemeral external / public IP address
   }
 }
