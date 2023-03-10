@@ -5,16 +5,6 @@ resource "google_compute_instance" "blogs_box" {
   machine_type = "e2-micro"
   zone         = var.zone
 
-  access_config {
-    # Will provision an ephemeral external / public IP address
-  }
-}
-
-resource "google_compute_instance" "blogs_box" {
-  name         = "blogs-${random_pet.blogs_box_name.id}"
-  machine_type = "e2-micro"
-  zone         = var.zone
-
   boot_disk {
     initialize_params {
       image = "debian-cloud/debian-11"
