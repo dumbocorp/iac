@@ -1,10 +1,10 @@
-resource "random_pet" "ecommerce_bucket_name" {}
+resource "random_pet" "blogs_bucket_name" {}
 
-module "ecommerce_bucket" {
+module "blogs_bucket" {
   source     = "terraform-google-modules/cloud-storage/google//modules/simple_bucket"
   version    = "~> 3.4"
   project_id = var.project
-  name       = "sudocorp-ecommerce-${random_pet.data_bucket_name.id}"
+  name       = "sudocorp-blogs-${random_pet.data_bucket_name.id}"
   location   = var.region
   iam_members = [
     {
