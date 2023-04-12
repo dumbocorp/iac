@@ -52,8 +52,8 @@ jobs:
       TF_IN_AUTOMATION: "true"
       TF_INPUT: "false"
       GCLOUD_VERSION: 410.0.0
-      WORKLOAD_IDENTITY_PROVIDER: projects/614092910704/locations/global/workloadIdentityPools/default/providers/github-actions
-      SERVICE_ACCOUNT: github-actions@boost-sudocorp.iam.gserviceaccount.com
+      WORKLOAD_IDENTITY_PROVIDER: projects/16940616000/locations/global/workloadIdentityPools/default/providers/github-actions
+      SERVICE_ACCOUNT: github-actions@boost-scratch.iam.gserviceaccount.com
     steps:
       - name: Checkout
         uses: actions/checkout@v3
